@@ -65,7 +65,19 @@ module.exports = configure(function (/* ctx */) {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf (viteConf) {},
+      extendViteConf (viteConf) {
+        if (!viteConf.build) {
+          viteConf.build = {}
+        }
+
+        viteConf.build.rollupOptions = {
+          output: {
+            entryFileNames: '[name].js',
+            chunkFileNames: '[name].js',
+            assetFileNames: '[name].[ext]'
+          }
+        }
+      },
       // viteVuePluginOptions: {},
 
       vitePlugins: [
