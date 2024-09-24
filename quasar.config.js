@@ -49,7 +49,7 @@ module.exports = configure(function (/* ctx */) {
         node: 'node20'
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -72,9 +72,9 @@ module.exports = configure(function (/* ctx */) {
 
         viteConf.build.rollupOptions = {
           output: {
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
-            assetFileNames: '[name].[ext]'
+            entryFileNames: 'js/[name].js',
+            chunkFileNames: 'js/[name].js',
+            assetFileNames: '[ext]/[name].[ext]'
           }
         }
       },
