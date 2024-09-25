@@ -2,14 +2,14 @@ import { Certificate } from 'src/models/Certificate'
 import { Location } from 'src/models/Location'
 
 export class Config {
-  serverName : string
+  domainName : string
   port : string
   location : Location
   certificates : Certificate
   certificatesKeyPath : string
 
   constructor (serverName: string, port: string, location: Location, certificates: Certificate, certificatesKeyPath: string) {
-    this.serverName = serverName
+    this.domainName = serverName
     this.port = port
     this.location = location
     this.certificates = certificates

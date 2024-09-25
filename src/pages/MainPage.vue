@@ -1,11 +1,11 @@
 <template>
   <q-page class="row items-center justify-evenly">
     <div v-for="(config, index) in configs" :key="index">
-      <div>serverName {{ config.serverName }}</div>
-      <div>port {{ config.port }}</div>
-      <div>location {{ config.location }}</div>
-      <div>certificates {{ config.certificates }}</div>
-      <div>certificatesKeyPath {{ config.certificatesKeyPath }}</div>
+      <div><b>serverName:</b> {{ config.domainName }}</div>
+      <div><b>port:</b> {{ config.port }}</div>
+      <div><b>location:</b> {{ config.location }}</div>
+      <div><b>certificates:</b> {{ config.certificates }}</div>
+      <div><b>certificatesKeyPath:</b> {{ config.certificatesKeyPath }}</div>
     </div>
   </q-page>
 </template>
