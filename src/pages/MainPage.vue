@@ -1,11 +1,11 @@
 <template>
   <q-page
     class="row items-center justify-evenly"
+    style="display: grid;"
   >
     <div
       v-for="(config, index) in configs"
       :key="index"
-      style="display: grid;"
     >
       <div><b>serverName:</b> {{ config.domainName }}</div>
       <div><b>port:</b> {{ config.port }}</div>
