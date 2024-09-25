@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout class="main-layout" view="lHh Lpr lFf">
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -22,3 +22,8 @@ export default defineComponent({
   }
 })
 </script>
+<style>
+.main-layout {
+  background-color: #2e2e2e;
+}
+</style>
