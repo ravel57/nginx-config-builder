@@ -14,10 +14,10 @@
       <div><b>locations:</b></div>
       <div v-for="(loc, index) in config.location" :key="index" style="margin-left: 16px;">
         <div><b>location:</b> {{ loc.location }}</div>
+        <div><b>proxyPass:</b> {{ loc.proxyPass }}</div>
         <div><b>proxySetHeaders:</b>
           <div v-for="(header, index) in loc.proxySetHeaders" :key="index" style="margin-left: 16px;">{{ header.key }} <b>:</b> {{header.value}}</div>
         </div>
-        <div><b>proxyPass:</b> {{ loc.proxyPass }}</div>
       </div>
       <div><b>upstream:</b> {{ config?.upstream }}</div>
       <div><b>certificates.principal:</b> {{ config.certificates?.principal }}</div>

@@ -3,14 +3,14 @@ import { Location } from 'src/models/Location'
 
 export class Config {
   domain : string
-  port : string
+  port : number
   isSsl: boolean
   location : Array<Location>
   upstream : string
   certificates : Certificate
   certificatesKeyPath : string
 
-  constructor (serverName: string, port: string, isSsl: boolean, location: Array<Location>, upstream : string, certificates: Certificate, certificatesKeyPath: string) {
+  constructor (serverName: string, port: number, isSsl: boolean, location: Array<Location>, upstream : string, certificates: Certificate, certificatesKeyPath: string) {
     this.domain = serverName
     this.port = port
     this.isSsl = isSsl
