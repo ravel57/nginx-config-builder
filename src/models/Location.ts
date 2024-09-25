@@ -1,9 +1,13 @@
-export class Location {
-  proxyPass: Array<string>
-  upstream : string
+import { Pair } from 'src/models/Pair'
 
-  constructor (proxyPass: Array<string>, upstream: string) {
+export class Location {
+  location: string
+  proxyPass: Array<string>
+  proxySetHeaders: Array<Pair>
+
+  constructor (location: string, proxyPass: Array<string>, proxySetHeaders: Array<Pair>) {
+    this.location = location
     this.proxyPass = proxyPass
-    this.upstream = upstream
+    this.proxySetHeaders = proxySetHeaders
   }
 }
