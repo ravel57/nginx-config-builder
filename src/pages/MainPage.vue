@@ -34,9 +34,11 @@
   </q-page>
 </template>
 
+
 <script lang="ts">
-import { Config } from 'src/models/Config'
+import {Config} from 'src/models/Config'
 import InstanceCard from "components/InstanceCard.vue";
+import axios from "axios";
 
 export default {
   name: 'MainPage',
@@ -44,16 +46,21 @@ export default {
   components: {InstanceCard},
 
   data: () => ({
-    configs: [{ domain: '', port: 80, isSsl: false, location: [], upstream: null, certificates: null, certificatesKeyPath: '' }, { domain: 'uldesk.ru', port: 443, isSsl: true, location: [{ location: '/', proxyPass: 'http://uldesk', proxySetHeaders: [{ key: 'Host', value: '$host' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }] }], upstream: '172.22.0.20:56480', certificates: { principal: 'CN=uldesk.ru', notBefore: '2024-09-21T13:54:34+03:00', notAfter: '2024-12-20T13:54:33+03:00', path: '/etc/letsencrypt/live/uldesk.ru/fullchain.pem' }, certificatesKeyPath: '/etc/letsencrypt/live/uldesk.ru/privkey.pem' }, { domain: 'test.uldesk.ru', port: 443, isSsl: true, location: [{ location: '/', proxyPass: 'http://test.uldesk', proxySetHeaders: [{ key: 'Host', value: '$host' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }, { key: 'Host', value: '$host' }, { key: 'Origin', value: '"http://172.22.0.20:56481"' }] }, { location: '/ws', proxyPass: 'http://test.uldesk/ws', proxySetHeaders: [{ key: 'Host', value: '$host' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }, { key: 'Host', value: '$host' }, { key: 'Origin', value: '"http://172.22.0.20:56481"' }] }], upstream: '172.22.0.20:56481', certificates: { principal: 'CN=test.uldesk.ru', notBefore: '2024-07-18T05:37:04+03:00', notAfter: '2024-10-16T05:37:03+03:00', path: '/etc/letsencrypt/live/test.uldesk.ru/fullchain.pem' }, certificatesKeyPath: '/etc/letsencrypt/live/test.uldesk.ru/privkey.pem' }, { domain: 'admin.uldesk.ru', port: 443, isSsl: true, location: [{ location: '/', proxyPass: 'http://admin.uldesk', proxySetHeaders: [{ key: 'Host', value: '$host' }, { key: 'X-Real-IP', value: '$remote_addr' }, { key: 'X-Forwarded-Proto', value: 'https' }, { key: 'X-Forwarded-Host', value: '$host' }, { key: 'X-Forwarded-For', value: '$proxy_add_x_forwarded_for' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }, { key: 'Host', value: '$host' }, { key: 'Origin', value: '"http://172.22.0.20:8090"' }] }, { location: '/ws', proxyPass: 'http://admin.uldesk/ws', proxySetHeaders: [{ key: 'Host', value: '$host' }, { key: 'X-Real-IP', value: '$remote_addr' }, { key: 'X-Forwarded-Proto', value: 'https' }, { key: 'X-Forwarded-Host', value: '$host' }, { key: 'X-Forwarded-For', value: '$proxy_add_x_forwarded_for' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }, { key: 'Host', value: '$host' }, { key: 'Origin', value: '"http://172.22.0.20:8090"' }] }], upstream: '172.22.0.20:56480', certificates: { principal: 'CN=admin.uldesk.ru', notBefore: '2024-09-21T23:17:45+03:00', notAfter: '2024-12-20T23:17:44+03:00', path: '/etc/letsencrypt/live/admin.uldesk.ru/fullchain.pem' }, certificatesKeyPath: '/etc/letsencrypt/live/admin.uldesk.ru/privkey.pem' }, { domain: 'qrref.ru', port: 443, isSsl: true, location: [{ location: '/', proxyPass: 'https://qrref', proxySetHeaders: [{ key: 'Host', value: '$host' }, { key: 'X-Real-IP', value: '$remote_addr' }, { key: 'X-Forwarded-For', value: '$proxy_add_x_forwarded_for' }, { key: 'X-Forwarded-Proto', value: '$scheme' }, { key: 'Upgrade', value: '$http_upgrade' }, { key: 'Connection', value: '"upgrade"' }] }], upstream: '172.22.0.20:56482', certificates: { principal: 'CN=qrref.ru', notBefore: '2024-09-23T17:03:47+03:00', notAfter: '2024-12-22T17:03:46+03:00', path: '/etc/letsencrypt/live/qrref.ru/fullchain.pem' }, certificatesKeyPath: '/etc/letsencrypt/live/qrref.ru/privkey.pem' }] as Array<Config>
+    configs: [] as Array<Config>
   }),
 
   methods: {},
 
-  mounted () {
+  mounted() {
+    axios.get("/api/v1/get-configs").then((response) => {
+      this.configs = response.data;
+    })
   }
 
 }
 </script>
+
+
 <style>
 .add-service-btn {
   margin: 8px;
@@ -63,6 +70,7 @@ export default {
   height: 40px;
   border-radius: 14px;
 }
+
 .card-container {
   display: flex;
   flex-direction: row;

@@ -55,15 +55,20 @@
   </q-dialog>
 </template>
 
+
 <script lang="ts">
-import {defineComponent} from 'vue'
 import {Config} from "src/models/Config";
 
-export default defineComponent({
+export default {
   name: "InstanceCard",
+
   props: {
-    config: {type: Config}
+    config: {
+      type: Config,
+      required: true,
+    }
   },
+
   data: () => ({
     showServiceModal: false,
     endpoint: '',
@@ -73,14 +78,18 @@ export default defineComponent({
     ssl: false,
     dateCertificateExpired: '',
   }),
+
   created() {
     this.ssl = this.config?.isSsl ?? false
     this.domain = this.config?.domain ?? ''
     this.port = this.config?.port ?? 0
     this.dateCertificateExpired = this.config?.certificates?.notAfter ?? ''
+    this.endpoint = this.config.upstream?.host ?? ""
+    this.endpointPort = this.config.upstream?.port.toString() ?? ""
   }
-})
+}
 </script>
+
 
 <style scoped>
 .instance-card {
@@ -101,6 +110,7 @@ export default defineComponent({
 
 .instance-card:hover {
   transform: scale(1.05);
+
   .background-text {
     transition: transform 0.5s;
     transform: scale(0.95);
