@@ -82,7 +82,13 @@ export default {
     },
 
     renewCertificate() {
+      axios.post('/api/v1/renew-certificate', this.config)
+        .then((response) => {
 
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     },
 
     save() {
