@@ -7,13 +7,13 @@
       </q-card-section>
       <q-card-section>
         <div style="display: flex; flex-direction: row;flex-wrap: nowrap">
-          <q-input v-model="endpoint" style="width: 70%" label="Endpoint"></q-input>
-          <q-input v-model="endpointPort" style="width: 30%" label="Port"></q-input>
+          <q-input v-model="endpoint" style="width: 70%" label="Endpoint"/>
+          <q-input v-model="endpointPort" style="width: 30%" label="Port"/>
         </div>
-        <q-input v-model="domain" label="Domain"></q-input>
-        <q-input type="number" v-model="port" label="Port"></q-input>
-        <q-checkbox v-model="ssl" label="SSL"></q-checkbox>
-        <q-input v-model="dateCertificateExpired" readonly label="Date certificate expired"></q-input>
+        <q-input v-model="domain" label="Domain"/>
+        <q-input type="number" v-model="port" label="Port"/>
+        <q-checkbox v-model="ssl" label="SSL"/>
+        <q-input v-model="dateCertificateExpired" readonly label="Date certificate expired"/>
       </q-card-section>
       <q-card-actions>
         <q-btn
