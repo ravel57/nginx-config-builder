@@ -47,7 +47,6 @@
 import {computed} from "vue";
 import {Config} from "src/models/Config";
 import axios from "axios";
-import {server} from "vite-plugin-checker/dist/cjs/checkers/vueTsc/typescript-vue-tsc";
 import {Upstream} from "src/models/Upstream";
 
 export default {
