@@ -19,7 +19,7 @@
         <q-btn
           style="color: #f36248"
           outline
-          @click="deleteInstance"
+          @click="deleteInstance(domain)"
         >
           Delete
         </q-btn>
@@ -77,14 +77,16 @@ export default {
   }),
 
   methods: {
-    deleteInstance() {
-
+    deleteInstance(domain: string) {
+      axios.delete(`/api/v1/config/${domain}`)
+        .then((response) => {
+          location.reload()
+        })
     },
 
     renewCertificate() {
       axios.post('/api/v1/renew-certificate', this.config)
         .then((response) => {
-
         })
         .catch((error) => {
           console.log(error);
@@ -103,6 +105,7 @@ export default {
       )
       axios.post('/api/v1/config', data)
         .then((response) => {
+          location.reload()
         })
         .catch((error) => {
           console.log(error);
